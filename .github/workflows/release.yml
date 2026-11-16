@@ -70,7 +70,7 @@ jobs:
       - name: Сборка мода
         run: |
           chmod +x gradlew
-          ./gradlew build --no-daemon
+          ./gradlew build --no-daemon -Dorg.gradle.java.home="$JAVA_HOME"
 
       - name: Публикация релиза на GitHub
         env:
