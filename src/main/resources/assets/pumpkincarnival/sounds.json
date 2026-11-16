@@ -1,0 +1,26 @@
+{
+  "ambient.wind_howl": {
+    "category": "ambient",
+    "subtitle": "subtitles.pumpkincarnival.ambient.wind_howl",
+    "sounds": [
+      {
+        "name": "pumpkincarnival:ambient/wind_howl_1",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.crow_caw": {
+    "category": "ambient",
+    "subtitle": "subtitles.pumpkincarnival.ambient.crow_caw",
+    "sounds": [
+      "pumpkincarnival:ambient/crow_caw_1"
+    ]
+  },
+  "event.carnival_start": {
+    "category": "ambient",
+    "subtitle": "subtitles.pumpkincarnival.event.carnival_start",
+    "sounds": [
+      "pumpkincarnival:event/carnival_bell"
+    ]
+  }
+}

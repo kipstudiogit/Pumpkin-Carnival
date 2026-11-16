@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "pumpkincarnival:block/carnival_lantern"
+    },
+    "hanging=true": {
+      "model": "pumpkincarnival:block/carnival_lantern_hanging"
+    }
+  }
+}

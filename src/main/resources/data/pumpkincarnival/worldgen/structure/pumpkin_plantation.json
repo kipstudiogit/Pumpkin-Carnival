@@ -1,0 +1,7 @@
+{
+  "type": "pumpkincarnival:pumpkin_plantation",
+  "biomes": "#pumpkincarnival:has_structure/pumpkin_plantation",
+  "step": "surface_structures",
+  "terrain_adaptation": "none",
+  "spawn_overrides": {}
+}

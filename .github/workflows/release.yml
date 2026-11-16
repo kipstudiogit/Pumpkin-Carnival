@@ -1,0 +1,110 @@
+# Copyright (C) 2026 Kettle Ignition Power Studio (K. I. P. Studio)
+# SPDX-License-Identifier: GPL-3.0-only
+
+name: Universal Mod Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Тег версии (например, v1.0.0)'
+        required: true
+        type: string
+      prerelease:
+        description: 'Отметить как бета-версию (Pre-release)'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Скачивание кода из репозитория
+        uses: actions/checkout@v4
+
+      - name: Автоопределение версии Java
+        id: detect-java
+        run: |
+          JAVA_VER=""
+          if grep -rnE "JavaLanguageVersion\.of\(21\)|VERSION_21|JavaVersion\.toVersion\(21\)" build.gradle* gradle.properties 2>/dev/null; then
+            JAVA_VER="21"
+          elif grep -rnE "JavaLanguageVersion\.of\(17\)|VERSION_17|JavaVersion\.toVersion\(17\)" build.gradle* gradle.properties 2>/dev/null; then
+            JAVA_VER="17"
+          elif grep -rnE "JavaLanguageVersion\.of\(16\)|VERSION_16" build.gradle* gradle.properties 2>/dev/null; then
+            JAVA_VER="16"
+          elif grep -rnE "JavaLanguageVersion\.of\(8\)|VERSION_1_8|sourceCompatibility\s*=\s*['\"]?1\.8" build.gradle* gradle.properties 2>/dev/null; then
+            JAVA_VER="8"
+          fi
+
+          if [ -z "$JAVA_VER" ]; then
+            if grep -rnE "1\.(20\.[5-9]|2[1-9])" build.gradle* gradle.properties 2>/dev/null; then
+              JAVA_VER="21"
+            elif grep -rnE "1\.(18|19|20)" build.gradle* gradle.properties 2>/dev/null; then
+              JAVA_VER="17"
+            elif grep -rnE "1\.17" build.gradle* gradle.properties 2>/dev/null; then
+              JAVA_VER="16"
+            elif grep -rnE "1\.(1[0-6]|[7-9])\." build.gradle* gradle.properties 2>/dev/null; then
+              JAVA_VER="8"
+            else
+              JAVA_VER="17"
+            fi
+          fi
+
+          echo "Выбрана Java: $JAVA_VER"
+          echo "version=$JAVA_VER" >> "$GITHUB_OUTPUT"
+
+      - name: Настройка Java ${{ steps.detect-java.outputs.version }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ steps.detect-java.outputs.version }}
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Сборка мода
+        run: |
+          chmod +x gradlew
+          ./gradlew build --no-daemon
+
+      - name: Публикация релиза на GitHub
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ inputs.tag_name }}"
+          else
+            TAG="${{ github.ref_name }}"
+          fi
+
+          mapfile -t JARS < <(find . -path "*/build/libs/*.jar" \
+            ! -path "*/common/*" \
+            ! -name "*-sources.jar" \
+            ! -name "*-dev.jar" \
+            ! -name "*-dev-shadow.jar" \
+            ! -name "*-slim.jar" \
+            ! -name "*-javadoc.jar" \
+            ! -name "*-api.jar")
+
+          if [ ${#JARS[@]} -eq 0 ]; then
+            echo "[ОШИБКА] Не найдены собранные JAR-файлы!"
+            exit 1
+          fi
+
+          echo "Найденные файлы для релиза: ${JARS[*]}"
+
+          PRERELEASE_FLAG=""
+          if [ "${{ inputs.prerelease }}" = "true" ] || [[ "$TAG" =~ -(alpha|beta|rc) ]]; then
+            PRERELEASE_FLAG="--prerelease"
+          fi
+
+          gh release create "$TAG" "${JARS[@]}" \
+            --target "${{ github.sha }}" \
+            --title "$TAG" \
+            --generate-notes \
+            $PRERELEASE_FLAG

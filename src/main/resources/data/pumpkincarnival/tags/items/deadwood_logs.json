@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "pumpkincarnival:deadwood_log",
+    "pumpkincarnival:stripped_deadwood_log",
+    "pumpkincarnival:deadwood_wood",
+    "pumpkincarnival:stripped_deadwood_wood"
+  ]
+}

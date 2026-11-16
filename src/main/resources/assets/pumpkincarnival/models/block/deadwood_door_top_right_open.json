@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right_open",
+  "textures": {
+    "bottom": "pumpkincarnival:block/deadwood_door_bottom",
+    "top": "pumpkincarnival:block/deadwood_door_top"
+  }
+}

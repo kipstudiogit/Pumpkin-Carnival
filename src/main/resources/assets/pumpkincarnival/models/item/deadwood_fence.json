@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_inventory",
+  "textures": {
+    "texture": "pumpkincarnival:block/deadwood_planks"
+  }
+}

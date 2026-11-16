@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": { "min": 2, "max": 4 },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "pumpkincarnival:carnival_ticket",
+          "weight": 15,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "min": 1, "max": 2 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "pumpkincarnival:soul_candy",
+          "weight": 25,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "min": 2, "max": 5 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:pumpkin_seeds",
+          "weight": 35,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "min": 8, "max": 18 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_hoe",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bread",
+          "weight": 20,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "min": 2, "max": 4 } }
+          ]
+        }
+      ]
+    }
+  ]
+}

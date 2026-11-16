@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "pumpkincarnival:block/deadwood_slab" },
+    "type=top": { "model": "pumpkincarnival:block/deadwood_slab_top" },
+    "type=double": { "model": "pumpkincarnival:block/deadwood_planks" }
+  }
+}

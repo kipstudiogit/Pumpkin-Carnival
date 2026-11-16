@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "pumpkincarnival:block/deadwood_planks",
+    "top": "pumpkincarnival:block/deadwood_planks",
+    "side": "pumpkincarnival:block/deadwood_planks"
+  }
+}

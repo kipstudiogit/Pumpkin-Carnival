@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "pumpkincarnival:deadwood_log",
+    "pumpkincarnival:stripped_deadwood_log",
+    "pumpkincarnival:deadwood_wood",
+    "pumpkincarnival:stripped_deadwood_wood",
+    "pumpkincarnival:deadwood_planks",
+    "pumpkincarnival:deadwood_stairs",
+    "pumpkincarnival:deadwood_slab",
+    "pumpkincarnival:deadwood_fence",
+    "pumpkincarnival:deadwood_fence_gate",
+    "pumpkincarnival:deadwood_door",
+    "pumpkincarnival:deadwood_trapdoor",
+    "pumpkincarnival:deadwood_pressure_plate",
+    "pumpkincarnival:deadwood_button"
+  ]
+}

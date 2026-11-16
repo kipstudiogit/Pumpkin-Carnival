@@ -1,0 +1,47 @@
+# Copyright (C) 2026 Kettle Ignition Power Studio (K. I. P. Studio)
+# SPDX-License-Identifier: GPL-3.0-only
+
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="GPL-3.0-only (Code) / CC BY-NC-ND 4.0 (Assets)"
+issueTrackerURL="https://github.com/kipstudiogit/Pumpkin-Carnival/issues"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://github.com/kipstudiogit/Pumpkin-Carnival"
+logoFile="logo.png"
+authors="${mod_authors}"
+description='''
+${mod_description}
+Developed by K. I. P. Studio.
+'''
+
+[[dependencies.${mod_id}]]
+    modId="forge"
+    mandatory=true
+    versionRange="${forge_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="geckolib"
+    mandatory=true
+    versionRange="[4.2,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="terrablender"
+    mandatory=true
+    versionRange="[2.2.0.0,)"
+    ordering="AFTER"
+    side="BOTH"

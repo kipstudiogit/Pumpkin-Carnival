@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": { "item": "pumpkincarnival:deadwood_planks" }
+  },
+  "result": {
+    "item": "pumpkincarnival:deadwood_slab",
+    "count": 6
+  }
+}

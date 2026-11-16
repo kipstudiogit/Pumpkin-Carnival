@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": { "item": "pumpkincarnival:stripped_deadwood_log" }
+  },
+  "result": {
+    "item": "pumpkincarnival:stripped_deadwood_wood",
+    "count": 3
+  }
+}
